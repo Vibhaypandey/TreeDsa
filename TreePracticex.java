@@ -32,7 +32,7 @@ public class TreePracticex {
             return true;
 
         // 2. both non-empty . compare them
-        if (a != null && b != null)
+        if (a != null && b != null && a.val==b.val)
         {
             return
                     (

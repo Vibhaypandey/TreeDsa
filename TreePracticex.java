@@ -25,44 +25,41 @@ public class TreePracticex {
 
     // Function to check if two trees
 // have same structure
-    static boolean isSameStructure(Node a, Node b)
-    {
-        // 1. both empty
-        if (a == null && b == null)
+    static boolean isSymmetric(Node a) {
+        if (a == null) {
             return true;
-
-        // 2. both non-empty . compare them
-        if (a != null && b != null)
-        {
-            return
-                    (
-                            isSameStructure(a.left, b.left) &&
-                                    isSameStructure(a.right, b.right)
-                    );
         }
-
-        // 3. one empty, one not . false
-        return false;
+        return isHelper(a.left, a.right);
     }
 
+    private static boolean isHelper(Node root1, Node root2) {
+        if(root1==null && root2==null){
+            return true;
+        }
+        if(root1!=null && root2!=null){
+            return root1.data==root2.data && isHelper(root1.left,root2.right) && isHelper(root1.right,root2.left);
+        }
+        return false;
+    }
     // Driver code
     public static void main(String args[])
     {
         Node root1 = newNode(1);
-        Node root2 = newNode(1);
+  //      Node root2 = newNode(1);
         root1.left = newNode(2);
-        root1.right = newNode(3);
-//        root1.left.left = newNode(4);
-//        root1.left.right = newNode(9);
-//        root1.right.right = newNode(20);
+        root1.right = newNode(2);
+        root1.left.left = newNode(3);
+        root1.left.right = newNode(4);
+        root1.right.right = newNode(3);
+        root1.right.left = newNode(4);
 
-        root2.left = newNode(2);
-        root2.right = newNode(3);
+ //       root2.left = newNode(2);
+ //       root2.right = newNode(3);
 //        root2.left.left = newNode(40);
 //        root2.left.right = newNode(90);
-//        root2.right.right = newNode(200);
+//        root2.right.right = newNode(4);
 
-        if (isSameStructure(root1, root2))
+        if (isSymmetric(root1))
             System.out.printf("Both trees have same structure");
         else
             System.out.printf("Trees do not have same structure");

@@ -1,0 +1,36 @@
+class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+      List<Integer> output =new ArrayList<>();
+       Queue<TreeNode> queue = new LinkedList<>();
+         if(root==null){
+             return output;
+         }
+         
+         queue.add(root);
+        while(!queue.isEmpty()){
+        int size = queue.size();
+         List<Integer> list1 =new ArrayList<>();
+        int max = Integer.MIN_VALUE;
+        for(int i =0;i<size;i++){
+           TreeNode node = queue.remove();
+            if(node.val>max){
+                max = node.val;
+            }
+            list1.add(node.val);
+             if(node.left!=null){
+                 queue.add(node.left);
+            }
+             if(node.right!=null){
+                 queue.add(node.right);
+            }
+          
+          
+        }
+
+         output.add(max);
+
+        }
+        
+          return output;
+    }
+}
